@@ -27,7 +27,7 @@ async getAllPage(){
       for (var j = 0; j < LinkList.length; j++) {
            LinkList[j] = await getContent(LinkList[j]);
       }
-      this.savetomongo(LinkList);
+      // this.savetomongo(LinkList);
     }catch(err){
       console.log(err);
     }
