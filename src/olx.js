@@ -42,7 +42,7 @@ async getPage(){
     for (var j = 0; j < LinkList.length; j++) {
       LinkList[j] = await this.getContent(LinkList[j]);
     }
-    var result = await this.savetomongo(LinkList);
+    // var result = await this.savetomongo(LinkList);
     // console.log(result + "aaa");
   }catch(err){
     console.log(err);
@@ -128,17 +128,17 @@ async getPage(){
             var collection = db.collection('olx');
             for (var i = 0; i < myobj.length; ++i) {
               var id = myobj[i].id_iklan;
-              collection.bulkWrite( [
-                 { updateMany :
-                    {
-                       "filter" : <document>,
-                       "update" : <document>,
-                       "upsert" : true,
-                       "collation": <document>,
-                       "arrayFilters": [ <filterdocument1>, ... ]
-                    }
-                 }
-              ] );
+              // collection.bulkWrite( [
+              //    { updateMany :
+              //       {
+              //          "filter" : <document>,
+              //          "update" : <document>,
+              //          "upsert" : true,
+              //          "collation": <document>,
+              //          "arrayFilters": [ <filterdocument1>, ... ]
+              //       }
+              //    }
+              // ] );
               collection.updateOne(
                   { id_iklan: id },
                   { $set: myobj[i]},
