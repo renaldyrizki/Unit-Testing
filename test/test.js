@@ -51,7 +51,7 @@ const olx_content = new olx(selector, category);
 var result;
 var result2;
 var result3;
-const key = ["address", "city","condition","content","datetime","id_iklan","images","luas_tanah","luas_tanah_string","ms_time","price","price_string","seller","sertifikasi",   "title",   "url"];
+const key = ["address", "city","condition","content","datetime","id_iklan","images","luas_tanah","luas_tanah_string","ms_time","price","price_string","seller","sertifikasi", "title", "url"];
 
 
 describe('TestCrawler', function() {
@@ -67,6 +67,19 @@ describe('TestCrawler', function() {
 		  	result2 = await olx_content.getContent(result[0]);
 		  	expect(result2).to.be.an('object').that.has.all.keys(key);
 	 	});
+
+	 	it('null properti', async () => {
+		  	result2 = await olx_content.getContent(result[0]);
+		  	expect(result2).to.be.an('object').that.has.all.keys(key);
+		  	expect(result2.luas_tanah).to.equal('');
+		  	expect(result2.luas_tanah_string).to.equal('');
+		  	expect(result2.sertifikasi).to.equal('');
+	 	});
+
+	 	it('savetomongo', async () => {
+		  	result3 = await olx_content.savetomongo([result2]);
+		  	expect(result3.result.ok).to.equal(1);
+	 	});
 	});
 
 	describe('Category Tanah', function() {
@@ -75,9 +88,9 @@ describe('TestCrawler', function() {
 		  	expect(result.length).to.equal(16);
 	 	});
 
-	 	it('getContent', async () => {
-		  	result2 = await olx_content.getContent(result[0]);
-		  	expect(result2).to.be.an('object').that.has.all.keys(key);
+	 	it('savetomongo', async () => {
+		  	result3 = await olx_content.savetomongo([result2]);
+		  	expect(result3.result.ok).to.equal(1);
 	 	});
 	});
 
