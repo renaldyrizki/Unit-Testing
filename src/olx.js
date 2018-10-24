@@ -32,7 +32,7 @@ async getAllPage(){
       console.log(err);
     }
   }
-  console.log("Get All Page Done");
+  // console.log("Get All Page Done");
 }
 
 async getPage(){
