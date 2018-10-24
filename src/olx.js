@@ -39,6 +39,7 @@ async getPage(){
   console.log("Get Page");
   try{
     var LinkList = await this.getLink(this.query, this.selectors);
+    console.log(LinkList);
     for (var j = 0; j < LinkList.length; j++) {
       LinkList[j] = await this.getContent(LinkList[j]);
     }
@@ -71,9 +72,12 @@ async getPage(){
         if (err) {
           reject(err);
         }else{
-          var ms_time = $('noscript > img').attr('src');
-          ms_time = ms_time.substr(ms_time.lastIndexOf("=")+1) + "000";
-          var datetime = new Date(+ms_time);
+          // var ms_time = $('noscript > img').attr('src');
+          // // var ms_time = $('noscript > img').attr("height");
+          // console.log(ms_time);
+          // process.exit();
+          // ms_time = ms_time.substr(ms_time.lastIndexOf("=")+1) + "000";
+          // var datetime = new Date(+ms_time);
         	var title = $('.offerheadinner > h1.brkword').text().trim();
         	var content = $('#textContent > p > span').map(function (){ return $(this).text().trim() ; }).get().filter(text => text).join(' ').replace(/\s\s+/g, ' ');
         	content = content.replace(/\n+/g, ' ');
@@ -99,8 +103,8 @@ async getPage(){
           	id_iklan: id,
           	title: title,
           	url: Linkdata,
-          	datetime: datetime,
-          	ms_time: ms_time,
+          	datetime: "datetime",
+          	ms_time: "ms_time",
           	content: content,
           	images: images,
           	price: price,
